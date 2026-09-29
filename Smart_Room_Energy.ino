@@ -17,8 +17,19 @@ void setup() {
 void loop() {
 
   // Simulated sensor readings
-  float currentReading = analogRead(CURRENT_SENSOR_PIN);
-  float temperatureReading = analogRead(TEMP_SENSOR_PIN);
+ // Read multiple samples to reduce sensor noise
+float totalReading = 0;
+
+for (int i = 0; i < 10; i++) {
+  totalReading += analogRead(CURRENT_SENSOR_PIN);
+  delay(10);
+}
+
+float currentReading = totalReading / 10.0;
+float temperatureReading = analogRead(TEMP_SENSOR_PIN);
+
+// Convert averaged sensor reading to estimated energy usage
+float energyUsage = (currentReading / 4095.0) * 500.0;
 
   // Convert sensor reading to estimated energy usage
   float energyUsage = (currentReading / 4095.0) * 500.0;
