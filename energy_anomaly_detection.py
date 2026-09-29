@@ -7,12 +7,12 @@ from sklearn.ensemble import IsolationForest
 energy_data = [
     [120], [125], [118], [130], [127],
     [122], [129], [124], [126], [121],
+    [128], [123], [126], [131],
     [450], [465], [440]
 ]
-
 # Create AI anomaly detection model
 model = IsolationForest(
-    contamination=0.2,
+    contamination=0.15,
     random_state=42
 )
 
