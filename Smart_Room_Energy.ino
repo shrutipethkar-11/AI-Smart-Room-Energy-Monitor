@@ -26,7 +26,11 @@ for (int i = 0; i < 10; i++) {
 }
 
 float currentReading = totalReading / 10.0;
+// Read temperature sensor continuously
 float temperatureReading = analogRead(TEMP_SENSOR_PIN);
+
+Serial.print("Updated Temperature Sensor Reading: ");
+Serial.println(temperatureReading);
 
 // Convert averaged sensor reading to estimated energy usage
 float energyUsage = (currentReading / 4095.0) * 500.0;
