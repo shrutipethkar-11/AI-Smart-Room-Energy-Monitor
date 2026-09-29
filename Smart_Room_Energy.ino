@@ -46,14 +46,17 @@ float energyUsage = (currentReading / 4095.0) * 500.0;
   Serial.println(temperatureReading);
 
   // Abnormal energy consumption detection
-  if (energyUsage > energyLimit) {
-    digitalWrite(ALERT_LED_PIN, HIGH);
-    Serial.println("ALERT: Abnormal energy consumption detected!");
-  } 
-  else {
-    digitalWrite(ALERT_LED_PIN, LOW);
-    Serial.println("Status: Normal energy consumption");
-  }
+  // Check for abnormal energy consumption
+bool abnormalEnergy = energyUsage > energyLimit;
+
+if (abnormalEnergy) {
+  digitalWrite(ALERT_LED_PIN, HIGH);
+  Serial.println("ALERT: Abnormal energy consumption detected!");
+}
+else {
+  digitalWrite(ALERT_LED_PIN, LOW);
+  Serial.println("Status: Normal energy consumption");
+}
 
   delay(2000);
 }
